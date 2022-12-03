@@ -36,22 +36,22 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String getNormalScore() {
-        String score = "";
+        StringBuilder score = new StringBuilder();
         int tempScore;
         for (int i = 1; i < 3; i++) {
             if (scoreIsEqual(i, 1)) tempScore = m_score1;
             else {
-                score += "-";
+                score.append("-");
                 tempScore = m_score2;
             }
             switch (tempScore) {
-                case 0 -> score += "Love";
-                case 1 -> score += "Fifteen";
-                case 2 -> score += "Thirty";
-                case 3 -> score += "Forty";
+                case 0 -> score.append("Love");
+                case 1 -> score.append("Fifteen");
+                case 2 -> score.append("Thirty");
+                case 3 -> score.append("Forty");
             }
         }
-        return score;
+        return score.toString();
     }
 
     private String getAdvantageOrWin() {
