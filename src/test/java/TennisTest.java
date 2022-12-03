@@ -1,10 +1,10 @@
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.stream.Stream;
-
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class TennisTest {
 
@@ -57,6 +57,7 @@ class TennisTest {
 
         assertThat(game.getScore()).isEqualTo(expectedScore);
     }
+
     private void addPoints(TennisGame game, int points, String playerName) {
         for (int i = 0; i < points; i++) {
             game.wonPoint(playerName);
@@ -69,26 +70,4 @@ class TennisTest {
         TennisGame1 game = new TennisGame1("David", "player2");
         checkAllScores(game, player1Score, player2Score, expectedScore);
     }
-
-    @ParameterizedTest
-    @MethodSource("possibleScoresAndExpectedScore")
-    void checkAllScoresTennisGame2(int player1Score, int player2Score, String expectedScore) {
-        TennisGame2 game = new TennisGame2("player1", "player2");
-        checkAllScores(game, player1Score, player2Score, expectedScore);
-    }
-
-    @ParameterizedTest
-    @MethodSource("possibleScoresAndExpectedScore")
-    void checkAllScoresTennisGame3(int player1Score, int player2Score, String expectedScore) {
-        TennisGame3 game = new TennisGame3("player1", "player2");
-        checkAllScores(game, player1Score, player2Score, expectedScore);
-    }
-
-    @ParameterizedTest
-    @MethodSource("possibleScoresAndExpectedScore")
-    void checkAllScoresTennisGame4(int player1Score, int player2Score, String expectedScore) {
-        TennisGame game = new TennisGame4("player1", "player2");
-        checkAllScores(game, player1Score, player2Score, expectedScore);
-    }
-
 }
