@@ -55,7 +55,11 @@ class TennisTest {
         addPoints(game, player1Score, "player1");
         addPoints(game, player2Score, "player2");
 
-        assertThat(game.getScore()).isEqualTo(expectedScore);
+        try {
+            assertThat(game.getScore()).isEqualTo(expectedScore);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void addPoints(TennisGame game, int points, String playerName) {
@@ -67,7 +71,7 @@ class TennisTest {
     @ParameterizedTest
     @MethodSource("possibleScoresAndExpectedScore")
     void checkAllScoresTennisGame1(int player1Score, int player2Score, String expectedScore) {
-        TennisGame1 game = new TennisGame1("David", "player2");
+        TennisGame1 game = new TennisGame1("player1", "player2");
         checkAllScores(game, player1Score, player2Score, expectedScore);
     }
 }
