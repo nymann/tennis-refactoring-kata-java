@@ -18,7 +18,7 @@ public class TennisGame1 implements TennisGame {
         }
     }
 
-    public String getScore() {
+    public String getScore() throws Exception {
         if (scoreIsEqual(m_score1, m_score2)) {
             return getEqualScore();
         }
@@ -36,23 +36,20 @@ public class TennisGame1 implements TennisGame {
         return m_score1 == m_score2;
     }
 
-    private String getNormalScore() {
-        StringBuilder score = new StringBuilder();
-        int tempScore;
-        for (int i = 1; i < 3; i++) {
-            if (scoreIsEqual(i, 1)) tempScore = m_score1;
-            else {
-                score.append("-");
-                tempScore = m_score2;
-            }
-            switch (tempScore) {
-                case 0 -> score.append("Love");
-                case 1 -> score.append("Fifteen");
-                case 2 -> score.append("Thirty");
-                case 3 -> score.append("Forty");
-            }
-        }
-        return score.toString();
+    private String getNormalScore() throws Exception {
+        String p1 = playerScore(m_score1);
+        String p2 = playerScore(m_score2);
+        return "%s-%s".formatted(p1, p2);
+    }
+
+    private String playerScore(int score) throws Exception {
+        return switch (score) {
+            case 0 -> "Love";
+            case 1 -> "Fifteen";
+            case 2 -> "Thirty";
+            case 3 -> "Forty";
+            default -> throw new Exception("Score not valid");
+        };
     }
 
     private String getAdvantageOrWin() {
