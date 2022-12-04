@@ -54,21 +54,12 @@ class TennisTest {
     private void checkAllScores(TennisGame game, int player1Score, int player2Score, String expectedScore) {
         addPoints(game, player1Score, "player1");
         addPoints(game, player2Score, "player2");
-
-        try {
-            assertThat(game.getScore()).isEqualTo(expectedScore);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        assertThat(game.getScore()).isEqualTo(expectedScore);
     }
 
     private void addPoints(TennisGame game, int points, String playerName) {
         for (int i = 0; i < points; i++) {
-            try {
-                game.wonPoint(playerName);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            game.wonPoint(playerName);
         }
     }
 
