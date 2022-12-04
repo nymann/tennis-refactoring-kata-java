@@ -1,8 +1,11 @@
+import model.Player;
+import scoreRendering.ScoreRenderer;
+import scoreRendering.ScoreRendererFactory;
+
 public class TennisGame1 implements TennisGame {
 
     private final Player p1;
     private final Player p2;
-    private final ScoreRendererFactory scoreRendererFactory = new ScoreRendererFactory();
 
     public TennisGame1(String player1Name, String player2Name) {
         this.p1 = new Player(player1Name);
@@ -20,7 +23,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        ScoreRenderer scoreRenderer = scoreRendererFactory.createScoreRenderer(p1, p2);
+        ScoreRenderer scoreRenderer = new ScoreRendererFactory(p1, p2).create();
         return scoreRenderer.render(p1, p2);
     }
 }

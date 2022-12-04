@@ -1,3 +1,7 @@
+package scoreRendering;
+
+import model.Player;
+
 public class EqualScoreRenderer implements ScoreRenderer {
     @Override
     public String render(Player p1, Player p2) {

@@ -1,3 +1,7 @@
+package scoreRendering;
+
+import model.Player;
+
 public class NormalScoreRenderer implements ScoreRenderer {
     @Override
     public String render(Player p1, Player p2) {
