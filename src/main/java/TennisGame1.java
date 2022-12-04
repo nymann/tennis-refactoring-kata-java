@@ -53,16 +53,12 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String getAdvantageOrWin() {
-        int minusResult = this.p1.getScore() - this.p2.getScore();
-        if (minusResult == 1) {
-            return "Advantage %s".formatted(this.p1.getName());
-        } else if (minusResult == -1) {
-            return "Advantage %s".formatted(this.p2.getName());
-        } else if (minusResult >= 2) {
-            return "Win for %s".formatted(this.p1.getName());
-        } else {
-            return "Win for %s".formatted(this.p2.getName());
+        int scoreDelta = Math.abs(p1.getScore() - this.p2.getScore());
+        Player leader = this.p1.getScore() > this.p2.getScore() ? this.p1 : this.p2;
+        if (scoreDelta == 1) {
+            return "Advantage %s".formatted(leader.getName());
         }
+        return "Win for %s".formatted(leader.getName());
     }
 
     private String getEqualScore() {
