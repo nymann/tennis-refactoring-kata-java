@@ -1,20 +1,22 @@
 public class TennisGame1 implements TennisGame {
 
-    private final String player1Name;
-    private final String player2Name;
+    private final Player p1;
+    private final Player p2;
     private int m_score1 = 0;
     private int m_score2 = 0;
 
     public TennisGame1(String player1Name, String player2Name) {
-        this.player1Name = player1Name;
-        this.player2Name = player2Name;
+        this.p1 = new Player(player1Name);
+        this.p2 = new Player(player2Name);
     }
 
-    public void wonPoint(String playerName) {
-        if (playerName.equals(this.player1Name)) {
+    public void wonPoint(String playerName) throws Exception {
+        if (playerName.equals(this.p1.getName())) {
             m_score1 += 1;
-        } else {
+        } else if (playerName.equals(this.p2.getName())) {
             m_score2 += 1;
+        } else {
+            throw new Exception("%s is not a valid playerName.".formatted(playerName));
         }
     }
 
@@ -55,13 +57,13 @@ public class TennisGame1 implements TennisGame {
     private String getAdvantageOrWin() {
         int minusResult = m_score1 - m_score2;
         if (minusResult == 1) {
-            return "Advantage %s".formatted(this.player1Name);
+            return "Advantage %s".formatted(this.p1.getName());
         } else if (minusResult == -1) {
-            return "Advantage %s".formatted(this.player2Name);
+            return "Advantage %s".formatted(this.p2.getName());
         } else if (minusResult >= 2) {
-            return "Win for %s".formatted(this.player1Name);
+            return "Win for %s".formatted(this.p1.getName());
         } else {
-            return "Win for %s".formatted(this.player2Name);
+            return "Win for %s".formatted(this.p2.getName());
         }
     }
 
